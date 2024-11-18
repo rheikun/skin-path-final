@@ -71,4 +71,15 @@ def show_about_id():
                         </div>
                 </div>
                 """, unsafe_allow_html=True)
+    st.markdown("""
+    <div class="contact-section">
+        <h2>Hubungi Pengembang</h2>
+        <div class="icon-container">
+            <a href="https://www.linkedin.com/in/rheisanfrs/" target="_blank" class="social-icon linkedin"></a>
+            <a href="https://www.instagram.com/rheisanfrs/" target="_blank" class="social-icon instagram"></a>
+            <a href="mailto:rheisanfirnandatama.2022@student.uny.ac.id" class="social-icon email"></a>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
 
