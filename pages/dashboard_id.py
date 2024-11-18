@@ -9,7 +9,6 @@ import importlib
 
 # Fungsi utama untuk aplikasi
 def show_dashboard_id():
-    
     def load_css(file_path):
         with open(file_path) as f:
             st.html(f"<style>{f.read()}</style>")
@@ -133,7 +132,7 @@ def show_dashboard_id():
 
     # Landing Page
     if not st.session_state['landing_done']:
-        st.markdown("<div class='title'>Selamat Datang di SkinPath 👩‍⚕️</div>", unsafe_allow_html=True)
+        st.markdown("<div class='section-title'>Selamat Datang di SkinPath 👩‍⚕️</div>", unsafe_allow_html=True)
         st.image(image_landing, use_column_width=True)
         st.markdown("""
             ### Fitur Utama:
@@ -169,7 +168,6 @@ def show_dashboard_id():
 
             image = st.camera_input("Mengambil foto") if input_option == "📸Ambil Gambar" else st.file_uploader("Unggah Gambar", type=["jpg", "jpeg", "png"])
 
-            # Menampilkan pratinjau gambar dan meminta konfirmasi
             if image and not st.session_state['image_confirmed']:
                 st.markdown("### Pratinjau Gambar:")
                 st.image(image, caption="Gambar Anda", use_column_width=True)
@@ -180,7 +178,6 @@ def show_dashboard_id():
                     st.session_state['skin_type'] = skin_type
                     st.rerun()
 
-            # Lanjutkan analisis hanya setelah konfirmasi
             elif st.session_state['image_confirmed']:
                 skin_types = ["Kering", "Berminyak", "Normal"]
                 st.markdown(f"""
@@ -190,29 +187,49 @@ def show_dashboard_id():
                 """, unsafe_allow_html=True)
                 
                 routine = skincare_routine(st.session_state['skin_type'])
+
+                st.write("")
                 st.markdown("<div class='sub-header'>Saran Rutinitas Perawatan Kulit</div>", unsafe_allow_html=True)
                 morning, evening = st.columns(2)
-
+                
                 with morning:
-                    st.markdown("<div class='column-header'>🌞 Rutinitas Pagi</div>", unsafe_allow_html=True)
+                    steps_html = """
+                    <div class='section'>
+                        <h3>🌞 Rutinitas Pagi</h3>
+                        <div class='section-content'>
+                    """
+                    
                     for step in routine["Morning"]:
-                        st.markdown(f"""
-                            <p style="font-size:16px; font-weight:regular; margin-left:6px;">
-                                🔹 {step}
-                            </p>
-                        """, unsafe_allow_html=True)
+                        steps_html += f"""
+                        🔹 {step}
+                        """
+
+                    steps_html += """
+                    </div>
+                    """
+                    
+                    st.markdown(steps_html, unsafe_allow_html=True)
+
                 with evening:
-                    st.markdown("<div class='column-header'>🌜 Rutinitas Malam</div>", unsafe_allow_html=True)
+                    steps_html = """
+                    <div class='section'>
+                        <h3>🌜 Rutinitas Malam</h3>
+                        <div class='section-content'>
+                    """
+                    
                     for step in routine["Evening"]:
-                        st.markdown(f"""
-                            <p style="font-size:16px; font-weight:regular; margin-left:6px;">
-                                🔹 {step}
-                            </p>
-                        """, unsafe_allow_html=True)
+                        steps_html += f"""
+                        🔹 {step}
+                        """
+
+                    steps_html += """
+                    </div>
+                    """
+                    
+                    st.markdown(steps_html, unsafe_allow_html=True)
 
                 st.write("")
 
-                # Pemilihan Tujuan
                 st.markdown("<div class='sub-header'>Tentukan Tujuan Perawatan Kulit</div>", unsafe_allow_html=True)
                 
                 goal = st.selectbox(
@@ -221,39 +238,43 @@ def show_dashboard_id():
                     help="Pilih tujuan perawatan kulit untuk mendapatkan rekomendasi yang sesuai."
                 )
 
-                # Saran Bahan Kimia
                 avoid, recommend, additional = suggest_chemicals(st.session_state['skin_type'], goal)
 
                 recommendation, avoidance, addition = st.columns(3)
                 with recommendation:
-                    st.markdown("<div class='column-header-chemicals'>Bahan yang Disarankan ✅</div>", unsafe_allow_html=True)
                     st.markdown(f"""
-                        <p style="font-size:16px;">
-                            {", ".join(recommend)}
-                        </p>
+                        <div class='column-header-chemicals-recommend'>
+                            <h3>Bahan yang Disarankan</h3>
+                            <p>
+                                {", ".join(recommend)}
+                            </p>
+                        </div>
                     """, unsafe_allow_html=True)
                     
                 with avoidance:
-                    st.markdown("<div class='column-header-chemicals'>Bahan yang Harus Dihindari 🚫</div>", unsafe_allow_html=True)
                     st.markdown(f"""
-                        <p style="font-size:16px;">
-                            {", ".join(avoid)}
-                        </p>
-                    """, unsafe_allow_html=True)
-                with addition: 
-                    st.markdown("<div class='column-header-chemicals'>Bahan Tambahan untuk Tujuan 💡</div>", unsafe_allow_html=True)
-                    st.markdown(f"""
-                        <p style="font-size:16px;">
-                            {", ".join(additional)}
-                        </p>
+                        <div class='column-header-chemicals-avoid'>
+                            <h3>Bahan yang Dihindari</h3>
+                            <p>
+                                {", ".join(avoid)}
+                            </p>
+                        </div>
                     """, unsafe_allow_html=True)
 
-                # Menggabungkan bahan tanpa duplikasi
+                with addition: 
+                    st.markdown(f"""
+                        <div class='column-header-chemicals-addition'>
+                            <h3>Bahan untuk Tujuan</h3>
+                            <p>
+                                {", ".join(additional)}
+                            </p>
+                        </div>
+                    """, unsafe_allow_html=True)
+
                 unique_ingredients = list(set(avoid + recommend + additional))
                 
                 st.write("")
 
-                # Expanders untuk Penjelasan Bahan tanpa duplikasi
                 st.markdown("<div class='sub-header'>Penjelasan Bahan 📖</div>", unsafe_allow_html=True)
                 for ingredient in unique_ingredients:
                     with st.expander(f"{ingredient} 📜"):
