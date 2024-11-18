@@ -12,130 +12,152 @@ def show_article_eng():
     # Muat CSS
     load_css(css_path)
     st.image(image_article, use_column_width=True)    
-    st.markdown("<div class='title'>Artikel Terkait Perawatan Kulit</div>", unsafe_allow_html=True)  
+    st.markdown("<div class='section-title'>Related Articles on Skincare</div>", unsafe_allow_html=True)
+
     # Article 1: Benefits of Sunscreen for All Skin Types
-    # Article 1: The Benefits of Sunscreen for All Skin Types
-    st.write("""
-        ### 1. The Benefits of Sunscreen for All Skin Types
-        Sunscreen is an essential skincare product for everyone, regardless of skin type or weather conditions. It helps protect the skin from harmful UV rays that can cause premature aging, hyperpigmentation, and skin cancer.
-        
-        **Key benefits of sunscreen:**
-        - Shields the skin from harmful UVA and UVB rays.
-        - Prevents dark spots caused by sun exposure.
-        - Reduces the risk of skin cancer.
-        - Maintains skin elasticity by protecting collagen fibers.
+    st.markdown("""
+    <div class='section'>
+        <h2>1. Benefits of Sunscreen for All Skin Types</h2>
+        <p class='section-content'>Sunscreen is a skincare product that should not be skipped by anyone, regardless of skin type or weather. Sunscreen helps protect the skin from UV damage, which can cause skin cancer, premature aging, and hyperpigmentation.</p>
+        <p class='section-content'><strong>Main benefits of sunscreen:</strong></p>
+        <ul class='section-content'>
+            <li>Protects the skin from UVA and UVB rays.</li>
+            <li>Prevents dark spots caused by sun exposure.</li>
+            <li>Reduces the risk of skin cancer.</li>
+            <li>Preserves skin elasticity by preventing collagen damage.</li>
+        </ul>
+        <p class='section-content'>For best results, use sunscreen with at least SPF 30 daily, even when indoors.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-        Apply sunscreen with at least SPF 30 every day, even indoors, to ensure maximum protection.
-    """)
-
-    # Article 2: Daily Skin Care Routine for Oily Skin
-    st.write("""
-        ### 2. Daily Skin Care Routine for Oily Skin
-        Oily skin often struggles with acne, enlarged pores, and excess shine. With the right skincare routine, you can manage oil production and maintain healthy skin.
-
-        **Daily care tips:**
-        - Wash your face twice a day with a cleanser containing salicylic acid to control oil production.
-        - Use a toner to minimize pores.
-        - Choose a lightweight, oil-free moisturizer (non-comedogenic).
-        - Avoid heavy products like greasy creams.
-        - Use a clay mask once a week to absorb excess oil.
-
-        Avoid over-washing your face, as it can lead to increased oil production as a compensatory mechanism.
-    """)
+    # Article 2: Daily Skincare Routine for Oily Skin
+    st.markdown("""
+    <div class='section'>
+        <h2>2. Daily Skincare Routine for Oily Skin</h2>
+        <p class='section-content'>Oily skin often faces issues such as acne, large pores, and excess shine. However, with the right routine, you can control oil production and keep your skin healthy.</p>
+        <p class='section-content'><strong>Daily care tips:</strong></p>
+        <ul class='section-content'>
+            <li>Cleanse your face twice a day with a salicylic acid-based cleanser to reduce excess oil.</li>
+            <li>Use a toner to minimize pores.</li>
+            <li>Choose a lightweight, oil-free (non-comedogenic) moisturizer.</li>
+            <li>Avoid heavy products like overly greasy creams.</li>
+            <li>Use a clay mask once a week to reduce oil production.</li>
+        </ul>
+        <p class='section-content'>Avoid over-washing your face, as this can trigger more oil production as a compensation mechanism.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
     # Article 3: Tips for Choosing Products for Sensitive Skin
-    st.write("""
-        ### 3. Tips for Choosing Products for Sensitive Skin
-        Sensitive skin requires extra care as it is prone to irritation. Selecting the wrong products can cause redness, itching, or even rashes.
-
-        **Guidelines for choosing products:**
-        - Look for labels like "hypoallergenic" or "sensitive skin-friendly."
-        - Avoid ingredients like fragrances, alcohol, and parabens.
-        - Opt for products with natural ingredients like aloe vera, chamomile, or oat.
-        - Always perform a patch test before trying a new product.
-        - Choose mineral-based sunscreens (zinc oxide or titanium dioxide) for a gentler option.
-
-        Keep your skin hydrated with fragrance-free moisturizers, especially after cleansing.
-    """)
+    st.markdown("""
+    <div class='section'>
+        <h2>3. Tips for Choosing Products for Sensitive Skin</h2>
+        <p class='section-content'>Sensitive skin requires extra care as it is prone to irritation. Choosing the wrong products can lead to rashes, redness, or itchiness.</p>
+        <p class='section-content'><strong>Guidelines for selecting products:</strong></p>
+        <ul class='section-content'>
+            <li>Opt for products labeled as "hypoallergenic" or "sensitive skin".</li>
+            <li>Avoid ingredients like fragrances, alcohol, and parabens.</li>
+            <li>Use products with natural ingredients such as aloe vera, chamomile, or oat.</li>
+            <li>Always perform a patch test before trying new products.</li>
+            <li>Choose mineral-based sunscreens (like zinc oxide or titanium dioxide) as they are gentler on sensitive skin.</li>
+        </ul>
+        <p class='section-content'>Additionally, keep your skin hydrated by regularly applying fragrance-free moisturizers, especially after cleansing your face.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
     # Article 4: Foods That Are Good for Your Skin
-    st.write("""
-        ### 4. Foods That Are Good for Your Skin
-        What you eat greatly affects the health and appearance of your skin. A balanced diet can improve skin texture, prevent premature aging, and combat acne.
+    st.markdown("""
+    <div class='section'>
+        <h2>4. Foods That Are Good for Your Skin</h2>
+        <p class='section-content'>What you consume has a significant impact on your skin's health and appearance. The right nutrients can improve skin texture, prevent premature aging, and fight acne.</p>
+        <p class='section-content'><strong>Best foods for your skin:</strong></p>
+        <ul class='section-content'>
+            <li><strong>Bright-colored fruits and vegetables:</strong> Carrots, oranges, and spinach are rich in vitamins C and A, which aid in skin cell regeneration.</li>
+            <li><strong>Fatty fish:</strong> Such as salmon and tuna, contain omega-3s that help maintain skin elasticity.</li>
+            <li><strong>Nuts:</strong> Rich in vitamin E, which protects the skin from free radical damage.</li>
+            <li><strong>Water:</strong> Keeps the skin hydrated from within.</li>
+        </ul>
+        <p class='section-content'>Avoid greasy foods, excess sugar, and processed foods to prevent skin problems such as acne.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-        **Best foods for healthy skin:**
-        - **Fruits and vegetables**: Carrots, oranges, and spinach are rich in vitamins A and C, promoting skin cell regeneration.
-        - **Fatty fish**: Salmon and tuna contain omega-3 fatty acids that maintain skin elasticity.
-        - **Nuts**: Almonds and walnuts are high in vitamin E, protecting skin from free radical damage.
-        - **Water**: Staying hydrated keeps your skin plump and glowing.
-
-        Avoid greasy, sugary, and processed foods to prevent common skin problems like acne.
-    """)
-
-    # Article 5: The Importance of Maintaining Facial Cleanliness
-    st.write("""
-        ### 5. The Importance of Maintaining Facial Cleanliness
-        Clean skin is the foundation of any good skincare routine. Proper cleansing removes dirt, oil, and makeup that accumulate throughout the day.
-
-        **Tips for keeping your face clean:**
-        - Wash your face twice a day, morning and night.
-        - Use lukewarm water (not hot) to avoid irritation.
-        - Choose a cleanser suited to your skin type.
-        - Avoid scrubbing your face harshly.
-        - Always remove makeup before going to bed.
-
-        A consistent cleansing routine can prevent breakouts and keep your skin fresh and healthy.
-    """)
+    # Article 5: Importance of Keeping Your Face Clean
+    st.markdown("""
+    <div class='section'>
+        <h2>5. Importance of Keeping Your Face Clean</h2>
+        <p class='section-content'>Face hygiene is the foundation of a good skincare routine. Properly cleansing your face removes dirt, oil, and makeup buildup throughout the day.</p>
+        <p class='section-content'><strong>Tips for maintaining face cleanliness:</strong></p>
+        <ul class='section-content'>
+            <li>Wash your face twice a day, morning and night.</li>
+            <li>Use lukewarm water (not hot) to avoid irritation.</li>
+            <li>Choose a cleanser suitable for your skin type.</li>
+            <li>Avoid scrubbing your face too hard.</li>
+            <li>Always remove makeup before sleeping.</li>
+        </ul>
+        <p class='section-content'>With consistent habits, you can prevent acne and keep your skin fresh.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
     # Article 6: What is Double Cleansing and Its Benefits?
-    st.write("""
-        ### 6. What is Double Cleansing and Its Benefits?
-        Double cleansing is a two-step facial cleansing technique: first using an oil-based cleanser to remove oil-based impurities, then a water-based cleanser to remove water-based impurities.
+    st.markdown("""
+    <div class='section'>
+        <h2>6. What is Double Cleansing and Its Benefits?</h2>
+        <p class='section-content'>Double cleansing is a technique that involves two steps: first removing oil-based impurities with an oil-based cleanser, followed by cleansing with a water-based cleanser.</p>
+        <p class='section-content'><strong>Benefits of double cleansing:</strong></p>
+        <ul class='section-content'>
+            <li>Thoroughly removes makeup and sunscreen residues.</li>
+            <li>Cleanses dirt that regular cleansers might miss.</li>
+            <li>Helps prevent acne caused by clogged pores.</li>
+        </ul>
+        <p class='section-content'>This technique is highly recommended for those who wear makeup frequently or live in cities with high pollution levels.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-        **Benefits of double cleansing:**
-        - Thoroughly removes makeup and sunscreen.
-        - Eliminates pollutants and dirt trapped in pores.
-        - Helps prevent acne caused by clogged pores.
+    # Article 7: Why is Moisturizer Important for All Skin Types?
+    st.markdown("""
+    <div class='section'>
+        <h2>7. Why is Moisturizer Important for All Skin Types?</h2>
+        <p class='section-content'>Moisturizers help maintain skin hydration and restore the skin's natural protective barrier. Even oily skin needs moisturizers.</p>
+        <p class='section-content'><strong>Benefits of moisturizers:</strong></p>
+        <ul class='section-content'>
+            <li>Locks in moisture in the skin.</li>
+            <li>Prevents flaking of dry skin.</li>
+            <li>Helps minimize the appearance of fine lines and wrinkles.</li>
+        </ul>
+        <p class='section-content'>Use a lightweight moisturizer for oily skin and a richer one for dry skin.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-        This technique is highly recommended for those who wear makeup frequently or live in polluted areas.
-    """)
+    # Article 8: Tips for Skincare in the Summer
+    st.markdown("""
+    <div class='section'>
+        <h2>8. Tips for Taking Care of Your Skin in Summer</h2>
+        <p class='section-content'>Summer increases the risk of sunburn, dehydration, and acne. Proper skincare is essential during this season.</p>
+        <p class='section-content'><strong>Summer skincare tips:</strong></p>
+        <ul class='section-content'>
+            <li>Always use sunscreen with high SPF every day.</li>
+            <li>Wear protective clothing such as hats and sunglasses.</li>
+            <li>Avoid direct sun exposure between 10 AM and 4 PM.</li>
+            <li>Opt for lightweight and oil-free skincare products.</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
 
-    # Article 7: Why Moisturizer is Important for All Skin Types
-    st.write("""
-        ### 7. Why Moisturizer is Important for All Skin Types
-        Moisturizers help lock in hydration and repair the skin's natural barrier. Even oily skin requires moisturizers to maintain balance.
+    # Article 9: Why is Getting Enough Sleep Important for Skin Health?
+    st.markdown("""
+    <div class='section'>
+        <h2>9. Why is Getting Enough Sleep Important for Skin Health?</h2>
+        <p class='section-content'>Adequate sleep helps the skin repair damaged cells and produce collagen.</p>
+        <p class='section-content'><strong>Benefits of enough sleep:</strong></p>
+        <ul class='section-content'>
+            <li>Improves skin elasticity.</li>
+            <li>Reduces puffiness and dark circles around the eyes.</li>
+            <li>Enhances skin regeneration.</li>
+        </ul>
+        <p class='section-content'>Make sure to sleep 7–8 hours each night for healthy and glowing skin.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-        **Benefits of moisturizers:**
-        - Keeps the skin hydrated and plump.
-        - Prevents flakiness and dryness.
-        - Helps smooth fine lines and wrinkles.
 
-        Choose a lightweight moisturizer for oily skin and a richer one for dry skin.
-    """)
 
-    # Article 8: Summer Skin Care Tips
-    st.write("""
-        ### 8. Summer Skin Care Tips
-        Summer heat increases the risk of sunburn, dehydration, and acne. Proper skincare during this season is essential.
 
-        **Tips for summer skincare:**
-        - Use sunscreen with high SPF daily.
-        - Wear protective clothing like hats and sunglasses.
-        - Avoid direct sun exposure from 10 AM to 4 PM.
-        - Choose lightweight, oil-free skincare products.
 
-        Staying hydrated and avoiding heavy makeup can also help your skin breathe better.
-    """)
-
-    # Article 9: Why Getting Enough Sleep is Crucial for Healthy Skin
-    st.write("""
-        ### 9. Why Getting Enough Sleep is Crucial for Healthy Skin
-        Quality sleep allows the skin to repair damaged cells and produce collagen, essential for maintaining skin elasticity.
-
-        **Benefits of adequate sleep:**
-        - Promotes skin elasticity and reduces wrinkles.
-        - Prevents puffiness and dark circles under the eyes.
-        - Enhances skin regeneration and brightness.
-
-        Aim for 7-8 hours of sleep per night for glowing, healthy skin.
-    """)

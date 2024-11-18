@@ -2,6 +2,10 @@
     background-color: #f3f9fa;
 }
 
+[data-testid="stSidebarCollapsedControl"] {
+    display: none !important;
+}
+
 .result-box {
     padding: 20px;
     background-color: #789DBC;
@@ -35,6 +39,37 @@
     font-weight: bold;
 }
 
+.column-header-chemicals-recommend {
+    background-color: #CBE2B0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    padding: 30px;
+    transition: transform 0.3s;
+}
+
+.column-header-chemicals-avoid {
+    background-color: #F19292;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    padding: 30px;
+    transition: transform 0.3s;
+}
+
+.column-header-chemicals-addition {
+    background-color: #FCF7BB;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    padding: 30px;
+    transition: transform 0.3s;
+}
+
+.column-header-chemicals:hover {
+    transform: scale(1.02);
+}
+
 .stSelectbox label {
     font-size: 18px;
     font-weight: regular;
@@ -54,11 +89,14 @@
 }
 
 .section-content {
+    font: sans-serif;
     text-align: justify;
 }
 
 .section-content-pengembang {
+    font-size: 18px;
     text-align: center;
+    line-height: 0.8;
 }
 
 .section-title {
@@ -69,9 +107,17 @@
     align-items: center;
 }
 
+.circular-position {
+    align-items: center;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
 .circular-image {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     margin: 10px auto;
+    align-items: center;
+    text-align: center;
 }

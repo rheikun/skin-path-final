@@ -6,7 +6,6 @@ def load_css(file_path):
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 def show_about_id():
-    """Menampilkan halaman 'Tentang Aplikasi'."""
     # Tentukan path file CSS
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     css_path = os.path.join(parent_dir, "../static/style/style.css")
@@ -65,9 +64,11 @@ def show_about_id():
     st.markdown("<div class='section-title'>Pengembang</div>", unsafe_allow_html=True)
     st.markdown(f"""
                 <div class='section'>
-                    <img src="{image_path}" class="circular-image">
-                    <p class = 'section-content-pengembang'>Rheisan Firnandatama Rizky Satria</p>
-                    <p class = 'section-content-pengembang'>22537141021</p>
+                        <div class='circular-position'>
+                            <img src="https://media.tenor.com/JuV-wJ4v58EAAAAe/appa-the-goat.png" class="circular-image">
+                            <p class = 'section-content-pengembang'>Rheisan Firnandatama Rizky Satria</p>
+                            <p class = 'section-content-pengembang'>22537141021</p>
+                        </div>
                 </div>
                 """, unsafe_allow_html=True)
 

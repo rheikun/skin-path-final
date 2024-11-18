@@ -11,9 +11,9 @@ def show_article_id():
 
     # Muat CSS
     load_css(css_path)
-    # Menampilkan artikel terkait perawatan kulit
     st.image(image_article, use_column_width=True)
     st.markdown("<div class='section-title'>Artikel Terkait Perawatan Kulit</div>", unsafe_allow_html=True)
+    
     # Artikel 1: Manfaat Sunscreen untuk Semua Jenis Kulit
     st.markdown("""
     <div class='section'>

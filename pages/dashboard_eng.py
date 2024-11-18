@@ -15,11 +15,12 @@ def show_dashboard_eng():
 
     # Menentukan path file
     parent_dir = os.path.dirname(os.path.abspath(__file__))
-    image_landing = os.path.join(parent_dir, "../static/images/logo.png")
-    image_dashboard = os.path.join(parent_dir, "../static/images/dashboard-eng.png")
+    
     # Memuat CSS
     css_path = os.path.join(parent_dir, "../static/style/style.css")
-
+    image_landing = os.path.join(parent_dir, "../static/images/logo.png")
+    image_dashboard = os.path.join(parent_dir, "../static/images/dashboard-eng.png")
+    
     # Panggil fungsi untuk memuat CSS
     load_css(css_path)
 
@@ -158,8 +159,8 @@ def show_dashboard_eng():
     
     elif st.session_state['landing_done']:
             st.image(image_dashboard, use_column_width=True)
-            st.title("SkinPath App 👩‍⚕️")
-            st.subheader("Input Method")
+            st.markdown("<div class='title'>SkinPath App 👩‍⚕️</div>", unsafe_allow_html=True)
+            st.markdown("<div class='sub-header'>Input Method</div>", unsafe_allow_html=True)
             input_option = st.selectbox("Select Image Input:", ("📸Capture Image", "📄Upload Photo"))
 
             if input_option == "📸Capture Image":
@@ -179,46 +180,107 @@ def show_dashboard_eng():
             
             elif st.session_state['image_confirmed']:
                 skin_types = ["Dry", "Oily", "Normal"]
-                st.success(f"Detected Skin Type: **{skin_types[st.session_state['skin_type']]}**")
+                st.markdown(f"""
+                    <div class="result-box">
+                        <strong>Detected Skin Type:</strong> {skin_types[st.session_state['skin_type']]}
+                    </div>
+                """, unsafe_allow_html=True)
 
                 routine = skincare_routine(st.session_state['skin_type'])
+
+                st.write("")
                 st.markdown("<div class='sub-header'>Skincare Routine Suggestions</div>", unsafe_allow_html=True)
                 morning, evening = st.columns(2)
-                
+
                 with morning:
-                    st.subheader("🌞 Morning Routine")
+                    steps_html = """
+                    <div class='section'>
+                        <h3>🌞 Morning Routine</h3>
+                        <div class='section-content'>
+                    """
+                    
                     for step in routine["Morning"]:
-                        st.write(f"🔹 {step}")
+                        steps_html += f"""
+                        🔹 {step}
+                        """
+
+                    steps_html += """
+                    </div>
+                    """
+                    
+                    st.markdown(steps_html, unsafe_allow_html=True)
 
                 with evening:
-                    st.subheader("🌜 Evening Routine")
+                    steps_html = """
+                    <div class='section'>
+                        <h3>🌜 Evening Routine</h3>
+                        <div class='section-content'>
+                    """
+                    
                     for step in routine["Evening"]:
-                        st.write(f"🔹 {step}")
+                        steps_html += f"""
+                        🔹 {step}
+                        """
+
+                    steps_html += """
+                    </div>
+                    """
+                    
+                    st.markdown(steps_html, unsafe_allow_html=True)
+
+                st.write("")
                 
-                st.header("Set Your Skincare Goal 🎯")
+                st.markdown("<div class='sub-header'>Set Your Skincare Goal</div>", unsafe_allow_html=True)
+                
                 goal = st.selectbox(
                     "Choose your skincare goal:", 
                     ["Skin Barrier Repair", "Acne Treatment", "Skin Whitening"],
-                    help="Select your primary skincare goal to receive ingredient recommendations."        )
+                    help="Select your primary skincare goal to receive ingredient recommendations."        
+                )
 
                 avoid, recommend, additional = suggest_chemicals(st.session_state['skin_type'], goal)
-                st.markdown("### Ingredients to Avoid 🚫")
-                st.write(", ".join(avoid))
 
-                st.markdown("### Recommended Ingredients ✅")
-                st.write(", ".join(recommend))
+                recommendation, avoidance, addition = st.columns(3)
+                with recommendation:
+                    st.markdown(f"""
+                        <div class='column-header-chemicals-recommend'>
+                            <h3>Recommended Ingredients</h3>
+                            <p>
+                                {", ".join(recommend)}
+                            </p>
+                        </div>
+                    """, unsafe_allow_html=True)
+                    
+                with avoidance:
+                    st.markdown(f"""
+                        <div class='column-header-chemicals-avoid'>
+                            <h3>Ingredients to Avoid</h3>
+                            <p>
+                                {", ".join(avoid)}
+                            </p>
+                        </div>
+                    """, unsafe_allow_html=True)
 
-                st.markdown("### Additional Ingredients for Goals 💡")
-                st.write(", ".join(additional))
+                with addition: 
+                    st.markdown(f"""
+                        <div class='column-header-chemicals-addition'>
+                            <h3>Additional for Goals</h3>
+                            <p>
+                                {", ".join(additional)}
+                            </p>
+                        </div>
+                    """, unsafe_allow_html=True)
 
                 unique_ingredients = list(set(avoid + recommend + additional))
-
-                st.markdown("### Ingredient Explanations 📖")
+                
+                st.write("")
+                
+                st.markdown("<div class='sub-header'>Ingredient Explanations 📖</div>", unsafe_allow_html=True)
                 for ingredient in unique_ingredients:
                     with st.expander(f"{ingredient} 📜"):
                         st.write(ingredient_explanation(ingredient))
 
-                if st.button("Restart Analysis"):
+                if st.button("Mulai Ulang Analisis"):
                     st.session_state['image_confirmed'] = False
                     st.session_state['skin_type'] = None
                     st.session_state['image'] = None
