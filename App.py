@@ -7,11 +7,11 @@ st.set_page_config(page_title="SkinPath",page_icon="👩‍⚕️",initial_sideb
 
 pages = ["Dashboard", "Article", "About", "GitHub"]
 parent_dir = os.path.dirname(os.path.abspath(__file__))
-urls = {"GitHub": "https://github.com/gabrieltempass/streamlit-navigation-bar"}
+urls = {"GitHub": "https://github.com/rheikun/skin-path-final"}
 styles = {
     "nav": {
         "background-color": "#5dc5d9",
-        "justify-content": "right",
+        "justify-content": "center",
     },
     "img": {
         "padding-right": "14px",
@@ -24,7 +24,7 @@ styles = {
         "color": "#14525e",
         "font-weight": "reguler",
         "padding": "8px",
-        "border-radius": "10px",  # This sets the corner radius to 8px
+        "border-radius": "10px",  
     }
 }
 
