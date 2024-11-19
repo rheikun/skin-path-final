@@ -122,6 +122,15 @@ def show_dashboard_eng():
         }
         return routines[skin_type]
 
+    # Function to provide skin type descriptions
+    def get_skin_type_description(skin_type):
+        descriptions = {
+            0: "Dry skin tends to feel tight, rough, and may appear dull. Proper care can help maintain moisture and elasticity.",
+            1: "Oily skin often looks shiny and is prone to acne. Proper care can help control oil production and keep pores clean.",
+            2: "Normal skin has a balance between moisture and oil. Proper care can help maintain healthy and balanced skin."
+        }
+        return descriptions.get(skin_type, "Description not available.")
+
     # Initialize
     if 'landing_done' not in st.session_state:
         st.session_state['landing_done'] = False
@@ -183,6 +192,13 @@ def show_dashboard_eng():
                 st.markdown(f"""
                     <div class="result-box">
                         <strong>Detected Skin Type:</strong> {skin_types[st.session_state['skin_type']]}
+                    </div>
+                """, unsafe_allow_html=True)
+                
+                skin_type_description = get_skin_type_description(st.session_state['skin_type'])
+                st.markdown(f"""
+                    <div class="section skin-type-description">
+                        <p>{skin_type_description}</p>
                     </div>
                 """, unsafe_allow_html=True)
 

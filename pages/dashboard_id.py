@@ -122,6 +122,15 @@ def show_dashboard_id():
         }
         return routines[skin_type]
 
+    # Fungsi untuk memberikan deskripsi tipe kulit
+    def get_skin_type_description(skin_type):
+        descriptions = {
+            0: "Kulit kering cenderung terasa kencang, kasar, dan mungkin terlihat kusam. Perawatan yang tepat dapat membantu menjaga kelembapan dan elastisitas kulit.",
+            1: "Kulit berminyak sering kali tampak mengkilap dan rentan terhadap jerawat. Perawatan yang tepat dapat membantu mengontrol produksi minyak dan menjaga kebersihan pori-pori.",
+            2: "Kulit normal memiliki keseimbangan antara kelembapan dan minyak. Perawatan yang tepat dapat membantu mempertahankan kondisi kulit yang sehat dan seimbang."
+        }
+        return descriptions.get(skin_type, "Deskripsi tidak tersedia.")
+
     # Initialize
     if 'landing_done' not in st.session_state:
         st.session_state['landing_done'] = False
@@ -186,6 +195,13 @@ def show_dashboard_id():
                     </div>
                 """, unsafe_allow_html=True)
                 
+                skin_type_description = get_skin_type_description(st.session_state['skin_type'])
+                st.markdown(f"""
+                    <div class="section skin-type-description">
+                        <p>{skin_type_description}</p>
+                    </div>
+                """, unsafe_allow_html=True)
+                
                 routine = skincare_routine(st.session_state['skin_type'])
 
                 st.write("")
@@ -196,7 +212,6 @@ def show_dashboard_id():
                     steps_html = """
                     <div class='section'>
                         <h3>🌞 Rutinitas Pagi</h3>
-                        <div class='section-content'>
                     """
                     
                     for step in routine["Morning"]:
@@ -214,7 +229,6 @@ def show_dashboard_id():
                     steps_html = """
                     <div class='section'>
                         <h3>🌜 Rutinitas Malam</h3>
-                        <div class='section-content'>
                     """
                     
                     for step in routine["Evening"]:
