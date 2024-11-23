@@ -175,7 +175,7 @@ def show_dashboard_id():
             if input_option == "📸Ambil Gambar":
                 st.info("Pastikan wajah Anda terlihat jelas tanpa bayangan yang menghalangi, dan pencahayaan yang cukup agar hasil lebih maksimal.")
 
-            image = st.camera_input("Mengambil foto") if input_option == "📸Ambil Gambar" else st.file_uploader("Unggah Gambar", type=["jpg", "jpeg", "png"])
+            image = st.camera_input("Mengambil foto") if input_option == "📸Ambil Gambar" else st.file_uploader("Unggah Gambar", type=["jpg", "jpeg"])
 
             if image and not st.session_state['image_confirmed']:
                 st.markdown("### Pratinjau Gambar:")

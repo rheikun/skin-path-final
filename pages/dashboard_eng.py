@@ -175,7 +175,7 @@ def show_dashboard_eng():
             if input_option == "📸Capture Image":
                 st.info("Make sure you have a clear view of your face with no shadows, and enough lighting to maximize the results.")
             
-            image = st.camera_input("Take a photo") if input_option == "📸Capture Image" else st.file_uploader("Upload your photo", type=["jpg", "jpeg", "png"])
+            image = st.camera_input("Take a photo") if input_option == "📸Capture Image" else st.file_uploader("Upload your photo", type=["jpg", "jpeg"])
 
             if image and not st.session_state['image_confirmed']:
                 st.markdown("### Image Preview:")
