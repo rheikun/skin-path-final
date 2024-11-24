@@ -1,11 +1,11 @@
 import streamlit as st
 import torch
 import torch.nn as nn
-from torchvision import models, transforms
+from torchvision import transforms
+from torchvision.models import resnet18
 from PIL import Image
 import io
 import os
-import importlib
 
 # Fungsi utama untuk aplikasi
 def show_dashboard_id():
@@ -24,34 +24,41 @@ def show_dashboard_id():
     # Panggil fungsi untuk memuat CSS
     load_css(css_path)
 
-    # Memuat arsitektur model (ResNet50)
-    model = models.resnet50(pretrained=False)
-    model.fc = nn.Linear(in_features=2048, out_features=3)  # Adjust for skin types
+    def load_model():
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        model = resnet18(pretrained=False)
+        model.fc = nn.Sequential(
+            nn.Dropout(p=0.5),
+            nn.Linear(model.fc.in_features, 3)  
+        )
+        model.load_state_dict(torch.load("./models/model2.pth", map_location=device))
+        model = model.to(device)
+        model.eval()
+        return model, device
 
-    # Memuat bobot model
-    state_dict = torch.load("./models/model.pth", map_location=torch.device('cpu'))
-    del state_dict['fc.weight']
-    del state_dict['fc.bias']
-    model.load_state_dict(state_dict, strict=False)
-    model.eval()
+    model, device = load_model()
     
     # Fungsi untuk preprocessing gambar
     def preprocess_image(image):
         transform = transforms.Compose([
-            transforms.Resize((224, 224)),  # Mengubah ukuran gambar
-            transforms.ToTensor(),  # Mengonversi gambar ke tensor
-            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])  # Normalisasi
+            transforms.Resize((224, 224)),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         ])
-        image = Image.open(io.BytesIO(image))  # Membaca gambar dari byte
-        return transform(image).unsqueeze(0)  # Mengembalikan gambar dalam format yang diharapkan model
+        image = Image.open(io.BytesIO(image)).convert("RGB")
+        return transform(image).unsqueeze(0)
 
     # Fungsi untuk memprediksi tipe kulit
     def predict_skin_type(image):
-        with torch.no_grad():  # Menonaktifkan gradient calculation
-            inputs = preprocess_image(image)  # Melakukan preprocessing pada gambar
-            outputs = model(inputs)  # Mendapatkan output dari model
-            _, predicted = torch.max(outputs, 1)  # Mengambil prediksi dengan nilai tertinggi
-            return predicted.item()  # Mengembalikan prediksi
+        try:
+            inputs = preprocess_image(image).to(device)
+            with torch.no_grad():
+                outputs = model(inputs)
+                _, predicted = torch.max(outputs, 1)
+            return predicted.item()
+        except Exception as e:
+            st.error(f"Error dalam prediksi tipe kulit: {e}")
+            return None
         
     # Penjelasan untuk setiap bahan
     def ingredient_explanation(ingredient):
